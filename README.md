@@ -1,4 +1,4 @@
---Project 6: Feedreader Testing--
+--Project 6: Feed Reader Testing--
 
 This project implemented the use of Jasmine to run tests on several html, css & js files.
 
