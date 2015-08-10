@@ -17,11 +17,11 @@ $(function() {
 
         // Test that makes sure a valid URL is defined within each feed
         it('should have a URL defined', function() {
-           allFeeds.forEach(function(feed) {
-               expect(feed.url).toBeDefined();
-               expect(feed.url.length).not.toBe(0);
-               expect(feed.url).toContain('http://');
-           });
+            allFeeds.forEach(function(feed) {
+                expect(feed.url).toBeDefined();
+                expect(feed.url.length).not.toBe(0);
+                expect(feed.url).toContain('://');
+            });
         });
 
         // Test that makes sure each feed has a name defined that is not empty
@@ -62,18 +62,19 @@ $(function() {
 
         // Test to ensure loadFeed is called & completed, and there is at least one .entry element w/in the .feed container
         beforeEach(function(done) {
-                loadFeed(0, done);
+            loadFeed(0, done);
         });
         it('contains one or more entry elements', function(done) {
-           expect($('.feed').find('.entry').length).toBeGreaterThan(0);
-           done();
+            expect($('.feed').find('.entry').length).toBeGreaterThan(0);
+            done();
         });
     });
 
     // Suite to test new feeds
     describe('New Feed Selection', function() {
         // Test to ensure new feed content changes
-        var $entries = $('.feed a').children('.entry');;
+        var entriesBefore, entriesAfter;
+        var $entries = $('.feed a').children('.entry');
         beforeEach(function(done){
             $('.feed').empty;
             loadFeed(0, function() {
