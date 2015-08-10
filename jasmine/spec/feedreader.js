@@ -37,7 +37,7 @@ $(function() {
     // Suite to test menu
     describe('The menu', function() {
 
-        var $menuToggle = $("body").hasClass("menu-hidden");
+        var $menuToggle = $('body').hasClass('menu-hidden');
 
         // Test to ensure menu element is hidden by default
         it('is initially hidden', function() {
@@ -74,21 +74,22 @@ $(function() {
     describe('New Feed Selection', function() {
         // Test to ensure new feed content changes
         var entriesBefore, entriesAfter;
-        var $entries = $('.feed a').children('.entry');
         beforeEach(function(done){
-            $('.feed').empty;
+            $('.feed').empty();
+            // Set the initial feed with first loadFeed
             loadFeed(0, function() {
-                entriesBefore = $('.feed').find("h2").text();
-            });
-            loadFeed(1, function() {
-                entriesAfter = $('.feed').find("h2").text();
-                done();
+                entriesBefore = $('.feed').find('.entry').text();
+                // Set the new feed with second loadFeed
+                loadFeed(1, function() {
+                    entriesAfter = $('.feed').find('.entry').text();
+                    done();
+                });
             });
         });
 
         it('has new entries', function(done){
-            expect(entriesBefore).not.toBe(entriesAfter);
+            expect(entriesBefore).not.toEqual(entriesAfter);
             done();
         });
     });
-}());
+});
